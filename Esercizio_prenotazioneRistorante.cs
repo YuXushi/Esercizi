@@ -1,4 +1,4 @@
-namespace Esercizio_premotazioneRistorante
+namespace Esercizio_prenotazioneRistorante
 {
     internal class Program
     {
