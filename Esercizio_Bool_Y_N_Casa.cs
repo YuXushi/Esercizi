@@ -66,8 +66,7 @@ namespace Esercizio_Bool_Y_N_Casa
             while (Restart == false)
             {
                 Console.WriteLine("Inserisci Y o N");
-                text = Console.ReadLine().ToLower, [0]; //questop era il modo giusto, quanto pare
-                text = text.ToLower();
+                text = char.Parse(Console.ReadLine().ToLower()); //questop era il modo giusto, quanto pare
                 char first = text[0];
                 if (first == 'y')
                 {
