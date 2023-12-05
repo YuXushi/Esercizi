@@ -1,4 +1,4 @@
-namespace Esercizio_Bool_Y_N_Casa
+/*namespace Esercizio_Bool_Y_N_Casa
 {
     internal class Program
     {
@@ -11,6 +11,62 @@ namespace Esercizio_Bool_Y_N_Casa
             {
                 Console.WriteLine("Inserisci Y o N");
                 text = Console.ReadLine();
+                text = text.ToLower();
+                char first = text[0];
+                if (first == 'y')
+                {
+                    Console.WriteLine("Hai inserito Y");
+                    Console.WriteLine("Vuoi Terminare il Programma? [Y/N]");
+                    termine = Console.ReadLine();
+                    termine = termine.ToLower();
+                    char firstT = termine[0];
+                    if (firstT == 'n')
+                    {
+                        Restart = false;
+                        Console.Clear();
+                    }
+                    else if (firstT == 'y')
+                    {
+                        Restart = true;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Hai inserito N");
+                    Console.WriteLine("Vuoi Terminare il Programma? [Y/N]");
+                    termine = Console.ReadLine();
+                    termine = termine.ToLower();
+                    char firstT = termine[0];
+                    if (firstT == 'n')
+                    {
+                        Restart = false;
+                        Console.Clear();
+                    }
+                    else if (firstT == 'y')
+                    {
+                        Restart = true;
+                    }
+                }
+            }
+            Console.WriteLine("Fine Programma");
+        }
+    }
+}
+*/
+
+namespace Esercizio_Bool_Y_N_Casa
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            bool Restart = false;
+            string termine;
+            char text;
+            while (Restart == false)
+            {
+                Console.WriteLine("Inserisci Y o N");
+                text = Console.ReadLine().ToLower, [0]; //questop era il modo giusto, quanto pare
                 text = text.ToLower();
                 char first = text[0];
                 if (first == 'y')
