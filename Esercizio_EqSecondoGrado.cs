@@ -71,5 +71,7 @@ namespace Esercizio_EqSecondoGrado
                 Console.WriteLine("Non ha radici reali.");
             }
         }
+        //è possibile copiare Delta e funzione2 in una nuova classe, cliccare con tasto destro "Esercizio_EqSecondoGrado"
+        //aggiungi nuova classe, mettere su "public" in fronte dei static, poi tagliare Delta e funzione2 nella nuova classe, cambiando tutto a public
     }
 }
