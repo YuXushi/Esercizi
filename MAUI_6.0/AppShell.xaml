@@ -21,6 +21,6 @@
         Title="Geometria"
         ContentTemplate="{DataTemplate view:GeometriaPage}"
         Route="GeometriaPage" 
-        Icon="matematicaimg.png"/>
+        Icon="geometria.png"/>
 
 </Shell>
