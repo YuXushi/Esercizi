@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Esercizi_MAUI_6._0.View.GeometriaPage"
+             Title="Geometria">
+    <VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Image
+                Margin="0, 30, 0, 10"
+                MaximumHeightRequest="100"
+                MaximumWidthRequest="100"
+                Source="geometria.png"
+                />
+        </HorizontalStackLayout>
+        <Entry
+            x:Name="raggio"
+            HorizontalOptions="Center"
+            Placeholder="raggio"
+            />
+    </VerticalStackLayout>
+</ContentPage>
