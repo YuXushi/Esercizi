@@ -19,7 +19,7 @@ namespace Esercizio_Vettori
                 numeroverifiche = int.Parse(Console.ReadLine());
             }
 
-            double[] verifiche = new double[numeroverifiche]; //La [] di new double rappresenta quanti valori il vettore può contenere
+            double[] verifiche = new double[10]; //La [] di new double rappresenta quanti valori il vettore può contenere
             //Carico i Voti, ovvero carico i dati sul vettore
             for (int i = 0; i < verifiche.Length; i++)
             {
@@ -34,8 +34,65 @@ namespace Esercizio_Vettori
             Console.WriteLine($"La media è {somma / verifiche.Length}");
 
 
+            //-----------------------------------------------------------------------------------------------------------------
 
 
+
+            // dichiaro un vettore di interi con dimensione 10
+
+            int[] vettore = new int[10];
+
+            //Carico il vettore con 10 numeri casuali compresi tra 0,100
+
+            Random numeroCasuale = new Random();
+            for (int i = 0; i < vettore.Length; i++)
+            {
+                vettore[i] = numeroCasuale.Next(0, 101);
+            }
+
+            //visualizzo il vettore
+            Console.WriteLine("Il vettore casuale:");
+            for (int i = 0; i < vettore.Length; i++)
+            {
+                Console.WriteLine(vettore[i]);
+            }
+
+            //Conteggio e ricerca di valori 
+            // Contare quanti sono i valori < 50.
+            int conta = 0;
+            for (int i = 0; i < vettore.Length; i++)
+            {
+                if (vettore[i] < 50)
+                {
+                    conta++;
+                }
+            }
+            Console.WriteLine($"i numeri minori di 50 sono: {conta}");
+
+            // ordino i vettori in modo crescente
+
+            int temp;
+            for (int i = 0; i < vettore.Length - 1 ;i++)
+            {
+                for (int k = 0; k < vettore.Length ; k++)
+                {
+                    if (vettore[i] > vettore[k])
+                    {
+                        //scambio i valori
+                        temp = vettore[k];
+                        vettore[i] = vettore[k];
+                        vettore[k] = temp;
+
+
+                    }
+                }
+            }
+            //Visualizzio di nuovo il vettore
+            Console.WriteLine("il vettore ordinato");
+            for ( int i = 0;i < vettore.Length; i++)
+            {
+                Console.WriteLine(vettore[i]);
+            }
         }
     }
 }
