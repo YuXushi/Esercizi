@@ -79,7 +79,7 @@ namespace Esercizio_Vettori
                     if (vettore[i] > vettore[k])
                     {
                         //scambio i valori
-                        temp = vettore[k];
+                        temp = vettore[i];
                         vettore[i] = vettore[k];
                         vettore[k] = temp;
 
