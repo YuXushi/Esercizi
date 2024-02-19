@@ -2,28 +2,45 @@ internal class program
 {
     public static string calculaterlestring(string input)
     {
-        //per accedre all'i-esimo carattere di na stringa
-        int i = 0;
-        char car;
-        string ris;
-        for (int j = 0; j < input.Length; j++)
+        //per accedre all'i-esimo carattere di una stringa
+
+        int j = 0;
+        int y = 0;
+
+        for (int i = 0; i < input.Length; i++)
         {
-            car = input[i];
-            if (car != input[j])
+            j++;
+            y++;
+            if (j == input.Length)
             {
-                Console.Write(car);
+                if (y != 1)
+                {
+                    Console.Write(y);
+                    Console.Write(input[i]);
+                }
+                else
+                {
+                    Console.Write(input[i]);
+                    Console.Write(input[i]);
+                }
+                y = 0;
             }
-            else
+            else if (input[i] != input[j])
             {
-
-
+                if (y != 1)
+                {
+                    Console.Write(y);
+                    Console.Write(input[i]);
+                }
+                else
+                {
+                    Console.Write(input[i]);
+                    Console.Write(input[i]);
+                }
+                y = 0;
             }
 
-
-
-            i++;
         }
-
         return "";
     }
     private static void Main(string[] args)
@@ -31,6 +48,6 @@ internal class program
         string testo = "AAAABAABBBCC";
         string risultato = calculaterlestring(testo);
         //mi aspetto che il risultato valga
-        //4abb2a3b2c
+        //4ABB2A3B2C
     }
 }
