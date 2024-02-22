@@ -101,7 +101,24 @@ namespace Esercizio_Vettori_Voti_2
             }
             void trovaBravo()
             {
+                int VotoMax = vettore[0];
 
+                for (int i = 1; i < vettore.Length; i++)
+                {
+                    if (vettore[i] > VotoMax)
+                    {
+                        VotoMax = vettore[i];
+                    }
+
+                }
+                Console.WriteLine("Allievi con voto massimo:");
+                for (int i = 0; i < vettore.Length; i++)
+                {
+                    if (vettore[i] == VotoMax)
+                    {
+                        Console.WriteLine($"allievo n. {i + 1}");
+                    }
+                }
             }
             char restart;
             Console.WriteLine("si desidera tornare alla selezione?[y/n]");
