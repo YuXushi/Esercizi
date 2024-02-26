@@ -4,17 +4,33 @@ namespace Esercizio_Vettori_3
     {
         static void Main()
         {
+            int[] vettori = new int[50];
+            Random casuale = new Random();
             bool restart = true;
             while (restart == true)
             {
-                int[] vettori = new int[50];
-                Random casuale = new Random();
+                visualizzaVettore();
+                Console.WriteLine();
+                trovaPariDispari();
+                Console.WriteLine();
+                trovaMaggiorUguale();
+                Console.WriteLine();
+                trovaMin();
+                Console.WriteLine();
+                riparti();
+                Console.WriteLine();
+            }
+            void visualizzaVettore()
+            {
+                Console.WriteLine("Il vettore è: ");
                 for (int i = 0; i < vettori.Length; i++)
                 {
                     vettori[i] = casuale.Next(1, 61);
                     Console.Write(vettori[i] + "; ");
                 }
-                Console.WriteLine();
+            }
+            void trovaPariDispari()
+            {
                 int sommaPari = 0; int sommaDispari = 0; int totalePari = 0; int totaleDispari = 0;
                 for (int i = 0; i < vettori.Length; i++)
                 {
@@ -31,7 +47,9 @@ namespace Esercizio_Vettori_3
                 }
                 Console.WriteLine($"La media dei numeri pari del vettore è: {sommaPari / totalePari}.");
                 Console.WriteLine($"La media dei numeri dispari del vettore è: {sommaDispari / totaleDispari}.");
-                Console.WriteLine();
+            }
+            void trovaMaggiorUguale()
+            {
                 int numero;
                 Console.WriteLine("inserire un numero intero");
                 while (!int.TryParse(Console.ReadLine(), out numero))
@@ -47,6 +65,9 @@ namespace Esercizio_Vettori_3
                     }
                 }
                 Console.WriteLine($"I numeri maggiori o uguali a {numero} sono {contaMaggiorUguale}");
+            }
+            void trovaMin()
+            {
                 int trovaMin = vettori[0];
                 for (int i = 0; i < vettori.Length; i++)
                 {
@@ -71,11 +92,13 @@ namespace Esercizio_Vettori_3
                 {
                     Console.WriteLine($"Il valore minimo del vettore è {trovaMin} ed è presente {contaMin} volte");
                 }
-                Console.WriteLine();
+            }
+            void riparti()
+            {
                 char scegli;
                 bool restart2 = true;
                 Console.WriteLine("Si desidera ripartire la simulazione? [Y/N]");
-                while(restart2 == true)
+                while (restart2 == true)
                 {
                     scegli = Console.ReadLine().ToLower()[0];
                     if (scegli == 'y')
@@ -94,7 +117,6 @@ namespace Esercizio_Vettori_3
                         restart2 = true;
                     }
                 }
-                Console.WriteLine();
             }
         }
     }
