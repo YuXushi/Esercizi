@@ -129,7 +129,7 @@ namespace Esercizio_Vettori_Voti_2
                 restar = Console.ReadLine().ToLower()[0];
                 if (restar == 'y')
                 {
-                    
+                    restart = true;
                 }
                 else if (restar == 'n')
                 {
