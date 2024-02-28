@@ -15,8 +15,8 @@ namespace Esercizio_Vettori_3
             bool restart = true;
             while (restart == true)
             {
-                ordinaVettore();
                 visualizzaVettore();
+                ordinaVettore();
                 Console.WriteLine();
                 trovaPariDispari();
                 Console.WriteLine();
@@ -150,7 +150,7 @@ namespace Esercizio_Vettori_3
                 }
 
                 int temp;
-                for (int i = 0; i < vettori.Length - 1;i++)
+                for (int i = 0; i < vettori.Length;i++)
                 {
                     for(int j = 0; j < vettori.Length;j++)
                     {
@@ -162,9 +162,11 @@ namespace Esercizio_Vettori_3
                         }
                     }
                 }
+                Console.WriteLine();
+                Console.WriteLine("Il vettore ordinato in ordine crescente: ");
                 for (int i = 0;i < vettori.Length;i++)
                 {
-                    Console.Write(vettoreAusiliare[i]);
+                    Console.Write(vettoreAusiliare[i] + "; ");
                 }
             }
         }
