@@ -45,10 +45,13 @@ namespace Lista_Oggetti_2
             Classe = "1?";
             votoInformatica = 2;
         }
-        
-
-
-
+        public Studente(string nome, string cognome, string classe, int voto) // Con questo puoi dichiarare i parametri direttamente nel costruttore
+        { 
+            Nome = nome;
+            Cognome = cognome;
+            this.classe = classe;
+            votoInformatica = voto;
+        }
     }
     internal class Program
     {
@@ -57,6 +60,7 @@ namespace Lista_Oggetti_2
             try
             {
                 Studente st = new Studente(); // esempio di oggetto di tipo Studente
+                
                 Console.WriteLine(st.Classe); // Se si visualizza il valore, solo il get viene attivato
                 st.Classe = "3BINF"; // Se siamo noi che mettiamo un valore al oggetto, si attiva il set invece
                 Console.WriteLine(st.Classe);
@@ -68,7 +72,7 @@ namespace Lista_Oggetti_2
                 int scelta;
                 // Facciamo un menù
 
-                Console.WriteLine("Inserisci 1 per caricare allievo, 2 per ricarca . . . E premi altro per chiudere");
+                Console.WriteLine("Inserisci 1 per caricare allievo, 2 per visualizzare i allievi, 3 per ordinare la lista in base al cognome. . . E premi altro per chiudere");
                 while (int.TryParse(Console.ReadLine(), out scelta) && scelta > 0 && scelta < 5)
                 {
                     if (scelta == 1)
@@ -77,16 +81,20 @@ namespace Lista_Oggetti_2
                     }
                     else if (scelta == 2)
                     {
-
+                        visualizzaLista(listaStudenti);
                     }
-
-                    Console.WriteLine("Inserisci 1 per caricare allievo, 2 per ricarca . . . E premi altro per chiudere");
+                    else if (scelta == 3)
+                    {
+                        ordinaLista(listaStudenti);
+                    }
+                    Console.WriteLine("Inserisci 1 per caricare allievo, 2 per visualizzare i allievi, 3 per ordinare la lista in base al cognome. . . E premi altro per chiudere");
                     //
                 }
             }
             catch (Exception ex) // se 3BINF fosse BINF, e il set non lo valida, il try lascia tutto al catch,
             {
-                // che prende il throw da Classe(throw new Exception("Stringa classe non corretta.");), quindi ex diventa quello che a preso
+                // che prende il throw da Classe(throw new Exception("Stringa classe non corretta.");)
+                // quindi ex diventa quello che a preso
                 Console.WriteLine(ex.Message);
             }
         }
@@ -96,6 +104,8 @@ namespace Lista_Oggetti_2
             try
             {
                 Studente st = new Studente();
+                Studente stl = new Studente("Mario", "Rossi", "3BINF", 7); // Come visto qui, il nome, cognome, classe, voto
+                                                                           // corrispondono ai valori inseriti direttamente
                 Console.WriteLine("Inserisci il nome dell'allievo da inserire");
                 // Dovrebbe esserci un controllo qui con il while
                 st.Nome = Console.ReadLine();
@@ -107,7 +117,7 @@ namespace Lista_Oggetti_2
                 st.VotoInformatica = int.Parse(Console.ReadLine());
                 // la aggiungo alla lista
                 listaStudenti.Add(st);
-                visualizzaLista(listaStudenti);
+                Console.WriteLine("Allievo caricato");
             }
             catch(Exception ex)
             {
@@ -119,7 +129,7 @@ namespace Lista_Oggetti_2
         {
             try
             {
-                foreach (var st in listaStudenti) // var fa sì che st diventi stringa o del tipo di listaStudenti è
+                foreach (var st in listaStudenti) // var fa sì che st diventi stringa o del tipo di dato che listaStudenti è
                 {
                     Console.WriteLine($"Nome = {st.Nome}; Cognome = {st.Cognome}; Classe = {st.Classe}; Voto = {st.VotoInformatica};");
                 }
@@ -129,6 +139,25 @@ namespace Lista_Oggetti_2
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        // Funzione per ordinare la lista in base al cognome
+        static void ordinaLista(List<Studente> listaStudenti)
+        {
+            listaStudenti = listaStudenti.OrderBy(valore => valore.Cognome).ThenBy(valore=>valore.Nome).ToList();
+            visualizzaLista(listaStudenti);
+        }
+
+
+        static void mediaVoti(List<Studente> listaStudente)
+        {
+            int somma = 0;
+            foreach (Studente st in listaStudente)
+            {
+                somma += st.VotoInformatica;
+            }
+            double media = (double)somma / listaStudente.Count;
+            Console.WriteLine($"La media dei voti è: {media}");
         }
     }
 }
