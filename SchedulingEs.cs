@@ -30,9 +30,6 @@ namespace SchedulingEs
             {
                 processi[i].CostoProcesso = Casuale.Next(1, 51);
                 processi[i].Eseguito = false;
-            }
-            for (int i = 0; i < processi.Length; i++)
-            {
                 processi[i].PercentualeCPU = Casuale.Next(0, 101);
             }
             Console.WriteLine("Selezionare una delle seguenti opzioni di algoritmo:");
