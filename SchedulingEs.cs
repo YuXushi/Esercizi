@@ -173,7 +173,6 @@ namespace SchedulingEs
         {
             Console.WriteLine();
             int TT = 0;
-            int B = 0;
             int x = 0;
             for (int i = 0; i < processi.Length; i++)
             {
@@ -185,25 +184,99 @@ namespace SchedulingEs
                 TT += processi[i].CostoProcesso;
                 TT += Copy[i].CostoProcesso;
             }
-            while (TT > 0)
+            for (int B = 0; TT > 0; B++)
             {
+                if (B == processi.Length - 1)
+                {
+                    B = 0;
+                }
                 Console.WriteLine();
                 Console.WriteLine($"Tempo: {TT}");
                 Console.WriteLine($"Eseguendo {processi[B].NomeProcesso}");
                 Console.WriteLine($"Timeslice di esecuzione: {processi[B].CostoProcesso}");
                 Console.WriteLine($"Percentual di CPU utilizzato: %{processi[B].PercentualeCPU}");
+                //if (processi[B].CostoProcesso > 0)
+                //{
+                //    processi[B].CostoProcesso -= 5;
+                //    processi[B].Eseguito = true;
+                //}
+                //else
+                //{
+                //    for (int i = 0; i < processi.Length; i++)
+                //    {
+                //        for (int j = 0; j < processi.Length; j++)
+                //        {
+                //            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
+                //            {
+                //                for (int k = 0; k < processi.Length; k++)
+                //                {
+                //                    processi[k].Eseguito = false;
+                //                }
+                //                processi[i].Eseguito = true;
+                //            }
+                //        }
+                //    }
+                //    for (int i = 0; i < processi.Length; i++)
+                //    {
+                //        if (processi[i].Eseguito == true)
+                //        {
+                //            processi[i].CostoProcesso -= 5;
+                //        }
+                //    }
+                //}
+
+                //for (int i = 0; i < processi.Length; i++)
+                //{
+                //    processi[i].Eseguito = false;
+                //}
+
+                //if (processi[B].CostoProcesso < 0)
+                //{
+                //    x = 0;
+                //    x = processi[B].CostoProcesso;
+                //    processi[B].CostoProcesso = 0;
+
+
+                //    for (int i = 0; i < processi.Length; i++)
+                //    {
+                //        for (int j = 0; j < processi.Length; j++)
+                //        {
+                //            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
+                //            {
+                //                for (int o = 0; o < processi.Length; o++)
+                //                {
+                //                    processi[o].Eseguito = false;
+                //                }
+                //                processi[i].Eseguito = true;
+                //            }
+                //        }
+                //    }
+                //    for (int i = 0; i < processi.Length; i++)
+                //    {
+                //        if (processi[i].Eseguito == true)
+                //        {
+                //            processi[i].CostoProcesso += x;
+                //        }
+                //    }
+                //}
+
                 if (processi[B].CostoProcesso > 0)
                 {
                     processi[B].CostoProcesso -= 5;
                     processi[B].Eseguito = true;
                 }
-                else
+                else if (processi[B].CostoProcesso == 0)
+                {
+
+                }
+                
+                if (processi[B].CostoProcesso < 0)
                 {
                     for (int i = 0; i < processi.Length; i++)
                     {
                         for (int j = 0; j < processi.Length; j++)
                         {
-                            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
+                            if (processi[i].CostoProcesso > processi[j].CostoProcesso)
                             {
                                 for (int k = 0; k < processi.Length; k++)
                                 {
@@ -217,51 +290,17 @@ namespace SchedulingEs
                     {
                         if (processi[i].Eseguito == true)
                         {
-                            processi[i].CostoProcesso -= 5;
+                            processi[i].CostoProcesso -= processi[B].CostoProcesso;
                         }
                     }
+
                 }
 
-                for (int i = 0; i < processi.Length; i++)
-                {
-                    processi[i].Eseguito = false;
-                }
-
-                if (processi[B].CostoProcesso < 0)
-                {
-                    x = 0;
-                    x = processi[B].CostoProcesso;
-                    processi[B].CostoProcesso = 0;
 
 
-                    for (int i = 0; i < processi.Length; i++)
-                    {
-                        for (int j = 0; j < processi.Length; j++)
-                        {
-                            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
-                            {
-                                for (int o = 0; o < processi.Length; o++)
-                                {
-                                    processi[o].Eseguito = false;
-                                }
-                                processi[i].Eseguito = true;
-                            }
-                        }
-                    }
-                    for (int i = 0; i < processi.Length; i++)
-                    {
-                        if (processi[i].Eseguito == true)
-                        {
-                            processi[i].CostoProcesso += x;
-                        }
-                    }
-                }
+
+
                 TT -= 5;
-                B++;
-                if (B == 4)
-                {
-                    B = 0;
-                }
             }
         }
         static void RRLPV(Processi[] processi)
