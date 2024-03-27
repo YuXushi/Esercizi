@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
- 
+
 namespace SchedulingEs
 {
     struct Processi
@@ -71,23 +71,23 @@ namespace SchedulingEs
             {
                 RRLPV(processi);
             }
- 
- 
+
+
             //First Comes First Served
- 
+
             //Shortest Job First
- 
+
             //Longest Job First
- 
+
             //Round Robin con livelli di priorità fissi
- 
+
             //Round Robin con priorità variabile in base al tempo di CPU(si utilizzerà la funzione rand per generare la % CPU per ogni processo durante l’esecuzione)
- 
- 
+
+
         }
         static void ProcessiOriginali(Processi[] processi, Processi[] Copy)
         {
-            for (int i = 0;  i < processi.Length; i++)
+            for (int i = 0; i < processi.Length; i++)
             {
                 Copy[i].NomeProcesso = processi[i].NomeProcesso;
                 Copy[i].CostoProcesso = processi[i].CostoProcesso;
@@ -118,11 +118,11 @@ namespace SchedulingEs
                         processi1[0].CostoProcesso = processi[j].CostoProcesso;
                         processi1[0].NomeProcesso = processi[j].NomeProcesso;
                         processi1[0].PercentualeCPU = processi[j].PercentualeCPU;
- 
+
                         processi[j].CostoProcesso = processi[i].CostoProcesso;
                         processi[j].NomeProcesso = processi[i].NomeProcesso;
                         processi[j].PercentualeCPU = processi[i].PercentualeCPU;
- 
+
                         processi[i].CostoProcesso = processi1[0].CostoProcesso;
                         processi[i].NomeProcesso = processi1[0].NomeProcesso;
                         processi[i].PercentualeCPU = processi1[0].PercentualeCPU;
@@ -144,18 +144,18 @@ namespace SchedulingEs
             Processi[] processi1 = new Processi[1];
             for (int i = 0; i < processi.Length; i++)
             {
-                for (int j = 0; j > processi.Length; j++)
+                for (int j = 0; j < processi.Length; j++)
                 {
                     if (processi[i].CostoProcesso > processi[j].CostoProcesso)
                     {
                         processi1[0].CostoProcesso = processi[j].CostoProcesso;
                         processi1[0].NomeProcesso = processi[j].NomeProcesso;
                         processi1[0].PercentualeCPU = processi[j].PercentualeCPU;
- 
+
                         processi[j].CostoProcesso = processi[i].CostoProcesso;
                         processi[j].NomeProcesso = processi[i].NomeProcesso;
                         processi[j].PercentualeCPU = processi[i].PercentualeCPU;
- 
+
                         processi[i].CostoProcesso = processi1[0].CostoProcesso;
                         processi[i].NomeProcesso = processi1[0].NomeProcesso;
                         processi[i].PercentualeCPU = processi1[0].PercentualeCPU;
@@ -224,19 +224,19 @@ namespace SchedulingEs
                         }
                     }
                 }
- 
+
                 for (int i = 0; i < processi.Length; i++)
                 {
                     processi[i].Eseguito = false;
                 }
- 
+
                 if (processi[B].CostoProcesso < 0)
                 {
                     x = 0;
                     x = processi[B].CostoProcesso;
                     processi[B].CostoProcesso = 0;
- 
- 
+
+
                     for (int i = 0; i < processi.Length; i++)
                     {
                         for (int j = 0; j < processi.Length; j++)
@@ -261,7 +261,7 @@ namespace SchedulingEs
                 }
                 TT -= 5;
                 B++;
-                if ( B == 4 )
+                if (B == 4)
                 {
                     B = 0;
                 }
@@ -269,31 +269,31 @@ namespace SchedulingEs
         }
         static void RRLPV(Processi[] processi)
         {
- 
- 
- 
+
+
+
         }
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
         //static void chiediProcesso()
         //{
         //    bool finito0 = false;
         //    while (finito0 == false)
         //    {
         //        Console.WriteLine("Inserire il nome di un processo");
- 
+
         //        Console.WriteLine("Inserire il costo del processo (in millisecondi)");
- 
+
         //        Console.WriteLine();
- 
+
         //        bool trueFinito0 = false;
         //        while (trueFinito0 == false)
         //        {
- 
+
         //            Console.WriteLine("Vuole inserire un'altro processo? [Y/N]");
         //            char finito1 = Console.ReadLine().ToLower()[0];
         //            if (finito1 == 'y')
@@ -310,7 +310,7 @@ namespace SchedulingEs
         //                Console.WriteLine("Inserire una risposta valida.");
         //            }
         //        }
- 
+
         //    }
         //}
     }
