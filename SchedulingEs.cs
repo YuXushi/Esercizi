@@ -14,23 +14,24 @@ namespace SchedulingEs
     {
         static void Main(string[] args)
         {
-            Processi[] processi = new Processi[5];
-            Processi[] copia = new Processi[5];
             Console.WriteLine("Algoritmo Di Scheduling");
             Console.WriteLine();
-            //chiediProcesso();
+            Console.WriteLine("Inserire numero di processi");
+            int numProcessi;
+            while (!int.TryParse(Console.ReadLine(), out numProcessi))
+            {
+                Console.WriteLine("Inserire un valore valido per il numero di processi");
+            }
+            Console.WriteLine();
+            Processi[] processi = new Processi[numProcessi];
+            chiediProcesso(processi, numProcessi);
             int selezione;
-            processi[0].NomeProcesso = "Processo 1";
-            processi[1].NomeProcesso = "Processo 2";
-            processi[2].NomeProcesso = "Processo 3";
-            processi[3].NomeProcesso = "Processo 4";
-            processi[4].NomeProcesso = "Processo 5";
             Random Casuale = new Random();
             for (int i = 0; i < processi.Length; i++)
             {
                 processi[i].CostoProcesso = Casuale.Next(1, 51);
                 processi[i].Eseguito = false;
-                processi[i].PercentualeCPU = Casuale.Next(0, 101);
+                processi[i].PercentualeCPU = Casuale.Next(1, 101);
             }
             Console.WriteLine("Selezionare una delle seguenti opzioni di algoritmo:");
             Console.WriteLine("1. First Comes First Served");
@@ -47,7 +48,6 @@ namespace SchedulingEs
                 Console.WriteLine("4. Round Robin con livelli di priorità fissi");
                 Console.WriteLine("5. Round Robin con priorità variabile");
             }
-            ProcessiOriginali(processi, copia);
             if (selezione == 1)
             {
                 FCFS(processi);
@@ -62,33 +62,11 @@ namespace SchedulingEs
             }
             else if (selezione == 4)
             {
-                RRLPF(processi, copia);
+                RRLPF(processi);
             }
             else if (selezione == 5)
             {
-                RRLPV(processi);
-            }
-
-
-            //First Comes First Served
-
-            //Shortest Job First
-
-            //Longest Job First
-
-            //Round Robin con livelli di priorità fissi
-
-            //Round Robin con priorità variabile in base al tempo di CPU(si utilizzerà la funzione rand per generare la % CPU per ogni processo durante l’esecuzione)
-
-
-        }
-        static void ProcessiOriginali(Processi[] processi, Processi[] Copy)
-        {
-            for (int i = 0; i < processi.Length; i++)
-            {
-                Copy[i].NomeProcesso = processi[i].NomeProcesso;
-                Copy[i].CostoProcesso = processi[i].CostoProcesso;
-                Copy[i].PercentualeCPU = processi[i].PercentualeCPU;
+                RRLPV(processi, Casuale);
             }
         }
         static void FCFS(Processi[] processi)
@@ -163,191 +141,321 @@ namespace SchedulingEs
             {
                 Console.WriteLine($"Eseguendo {processi[i].NomeProcesso}");
                 Console.WriteLine($"Timeslice di esecuzione: {processi[i].CostoProcesso}");
-                Console.WriteLine($"Percentual di CPU utilizzato: %{processi[i].PercentualeCPU}");
+                Console.WriteLine($"Percentuale di CPU utilizzato: %{processi[i].PercentualeCPU}");
                 processi[i].Eseguito = true;
                 Thread.Sleep(processi[i].CostoProcesso);
                 Console.WriteLine();
             }
         }
-        static void RRLPF(Processi[] processi, Processi[] Copy)
+        static void RRLPF(Processi[] processi)
         {
-            Console.WriteLine();
-            int TT = 0;
             int x = 0;
             for (int i = 0; i < processi.Length; i++)
             {
-                while (Copy[i].CostoProcesso % 5 == 0)
-                {
-                    Copy[i].CostoProcesso++;
-                }
-                Copy[i].CostoProcesso -= processi[i].CostoProcesso;
-                TT += processi[i].CostoProcesso;
-                TT += Copy[i].CostoProcesso;
+                x += processi[i].CostoProcesso;
             }
-            for (int B = 0; TT > 0; B++)
+            for (int i = 0; i < processi.Length; i++)
             {
-                if (B == processi.Length - 1)
-                {
-                    B = 0;
-                }
+                Console.WriteLine($"{processi[i].NomeProcesso}");
+                Console.WriteLine($"Timeslice di esecuzione: {processi[i].CostoProcesso}");
+                Console.WriteLine($"Percentuale di CPU utilizzato: %{processi[i].PercentualeCPU}");
                 Console.WriteLine();
-                Console.WriteLine($"Tempo: {TT}");
-                Console.WriteLine($"Eseguendo {processi[B].NomeProcesso}");
-                Console.WriteLine($"Timeslice di esecuzione: {processi[B].CostoProcesso}");
-                Console.WriteLine($"Percentual di CPU utilizzato: %{processi[B].PercentualeCPU}");
-                //if (processi[B].CostoProcesso > 0)
-                //{
-                //    processi[B].CostoProcesso -= 5;
-                //    processi[B].Eseguito = true;
-                //}
-                //else
-                //{
-                //    for (int i = 0; i < processi.Length; i++)
-                //    {
-                //        for (int j = 0; j < processi.Length; j++)
-                //        {
-                //            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
-                //            {
-                //                for (int k = 0; k < processi.Length; k++)
-                //                {
-                //                    processi[k].Eseguito = false;
-                //                }
-                //                processi[i].Eseguito = true;
-                //            }
-                //        }
-                //    }
-                //    for (int i = 0; i < processi.Length; i++)
-                //    {
-                //        if (processi[i].Eseguito == true)
-                //        {
-                //            processi[i].CostoProcesso -= 5;
-                //        }
-                //    }
-                //}
-
-                //for (int i = 0; i < processi.Length; i++)
-                //{
-                //    processi[i].Eseguito = false;
-                //}
-
-                //if (processi[B].CostoProcesso < 0)
-                //{
-                //    x = 0;
-                //    x = processi[B].CostoProcesso;
-                //    processi[B].CostoProcesso = 0;
-
-
-                //    for (int i = 0; i < processi.Length; i++)
-                //    {
-                //        for (int j = 0; j < processi.Length; j++)
-                //        {
-                //            if (processi[i].CostoProcesso < processi[j].CostoProcesso)
-                //            {
-                //                for (int o = 0; o < processi.Length; o++)
-                //                {
-                //                    processi[o].Eseguito = false;
-                //                }
-                //                processi[i].Eseguito = true;
-                //            }
-                //        }
-                //    }
-                //    for (int i = 0; i < processi.Length; i++)
-                //    {
-                //        if (processi[i].Eseguito == true)
-                //        {
-                //            processi[i].CostoProcesso += x;
-                //        }
-                //    }
-                //}
-
-                if (processi[B].CostoProcesso > 0)
+            }
+            for (int i = 0; x > 0; i++)
+            {
+                int sortConta = 0;
+                if (sortConta == 1)
                 {
-                    processi[B].CostoProcesso -= 5;
-                    processi[B].Eseguito = true;
-                }
-                else if (processi[B].CostoProcesso == 0)
-                {
-
-                }
-                
-                if (processi[B].CostoProcesso < 0)
-                {
-                    for (int i = 0; i < processi.Length; i++)
+                    Console.WriteLine("sorting dei processi");
+                    Console.WriteLine();
+                    Processi[] processi1 = new Processi[1];
+                    for (int sort = 0; sort < processi.Length; sort++)
                     {
                         for (int j = 0; j < processi.Length; j++)
                         {
-                            if (processi[i].CostoProcesso > processi[j].CostoProcesso)
+                            if (processi[sort].CostoProcesso < processi[sort].CostoProcesso)
                             {
-                                for (int k = 0; k < processi.Length; k++)
-                                {
-                                    processi[k].Eseguito = false;
-                                }
-                                processi[i].Eseguito = true;
+                                processi1[0].CostoProcesso = processi[sort].CostoProcesso;
+                                processi1[0].NomeProcesso = processi[sort].NomeProcesso;
+                                processi1[0].PercentualeCPU = processi[sort].PercentualeCPU;
+
+                                processi[j].CostoProcesso = processi[sort].CostoProcesso;
+                                processi[j].NomeProcesso = processi[sort].NomeProcesso;
+                                processi[j].PercentualeCPU = processi[sort].PercentualeCPU;
+
+                                processi[sort].CostoProcesso = processi1[0].CostoProcesso;
+                                processi[sort].NomeProcesso = processi1[0].NomeProcesso;
+                                processi[sort].PercentualeCPU = processi1[0].PercentualeCPU;
                             }
                         }
                     }
-                    for (int i = 0; i < processi.Length; i++)
-                    {
-                        if (processi[i].Eseguito == true)
-                        {
-                            processi[i].CostoProcesso -= processi[B].CostoProcesso;
-                        }
-                    }
-
                 }
-
-
-
-
-
-                TT -= 5;
+                int y = 0;
+                bool pass = false;
+                bool passX = false;
+                if (processi[i].Eseguito == false)
+                {
+                    processi[i].CostoProcesso -= 5;
+                    Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                    if (processi[i].CostoProcesso <= 0)
+                    {
+                        processi[i].Eseguito = true;
+                    }
+                    if (processi[i].CostoProcesso < 0)
+                    {
+                        pass = true;
+                        y = processi[i].CostoProcesso;
+                        processi[i].CostoProcesso = 0;
+                    }
+                    Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                    Console.WriteLine();
+                }
+                else if (processi[i].Eseguito == true)
+                {
+                    Console.WriteLine("Rilevato processo per Y:");
+                    Console.WriteLine(processi[i].NomeProcesso);
+                    int conta = 0;
+                    while (passX == false)
+                    {
+                        if (processi[i].Eseguito == false)
+                        {
+                            processi[i].CostoProcesso -= 5;
+                            Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                            passX = true;
+                            if (processi[i].CostoProcesso <= 0)
+                            {
+                                processi[i].Eseguito = true;
+                            }
+                            if (processi[i].CostoProcesso < 0)
+                            {
+                                pass = true;
+                                y = processi[i].CostoProcesso;
+                                processi[i].CostoProcesso = 0;
+                            }
+                            Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                            Console.WriteLine();
+                        }
+                        i++;
+                        if (i >= processi.Length)
+                        {
+                            i = 0; 
+                        }
+                        if (conta >= processi.Length+1)
+                        {
+                            passX = true;
+                        }
+                        conta++;
+                    }
+                }
+                bool trovato = false;
+                if (pass == true)
+                {
+                    int conta = 0;
+                    while (trovato == false)
+                    {
+                        if (processi[i].Eseguito == false)
+                        {
+                            Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                            processi[i].CostoProcesso += y;
+                            if (processi[i].CostoProcesso < 0)
+                            {
+                                processi[i].CostoProcesso = 0;
+                            }
+                            Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                            Console.WriteLine();
+                            trovato = true;
+                            conta++;
+                        }
+                        i++;
+                        if (i >= processi.Length)
+                        {
+                            i = 0;
+                        }
+                        if (conta >= processi.Length+1)
+                        {
+                            trovato = true;
+                        }
+                        conta++;
+                    }
+                }
+                if (i >= processi.Length - 1)
+                {
+                    i = 0;
+                }
+                x -= 5;
+                sortConta++;
+            }
+            Console.WriteLine("Fine delle esecuzioni");
+            for (int i = 0; i < processi.Length; i++)
+            {
+                Console.WriteLine($"{processi[i].NomeProcesso}");
+                Console.WriteLine($"Timeslice di esecuzione: {processi[i].CostoProcesso}");
+                Console.WriteLine($"Percentuale di CPU utilizzato: %{processi[i].PercentualeCPU}");
+                Console.WriteLine();
             }
         }
-        static void RRLPV(Processi[] processi)
+        static void RRLPV(Processi[] processi, Random Casuale)
         {
+            int x = 0;
+            for (int i = 0; i < processi.Length; i++)
+            {
+                x += processi[i].CostoProcesso;
+            }
+            for (int i = 0; i < processi.Length; i++)
+            {
+                Console.WriteLine($"{processi[i].NomeProcesso}");
+                Console.WriteLine($"Timeslice di esecuzione: {processi[i].CostoProcesso}");
+                Console.WriteLine($"Percentuale di CPU utilizzato: %{processi[i].PercentualeCPU}");
+                Console.WriteLine();
+            }
+            for (int i = 0; x > 0; i++)
+            {
+                Console.WriteLine("---------------------------------------------------------");
+                Console.WriteLine("sorting dei processi (In base alla percentuale della CPU)");
+                Processi[] processi1 = new Processi[1];
+                for (int sort = 0; sort < processi.Length; sort++)
+                {
+                    for (int j = 0; j < processi.Length; j++)
+                    {
+                        if (processi[sort].PercentualeCPU < processi[sort].PercentualeCPU)
+                        {
+                            processi1[0].CostoProcesso = processi[sort].CostoProcesso;
+                            processi1[0].NomeProcesso = processi[sort].NomeProcesso;
+                            processi1[0].PercentualeCPU = processi[sort].PercentualeCPU;
 
+                            processi[j].CostoProcesso = processi[sort].CostoProcesso;
+                            processi[j].NomeProcesso = processi[sort].NomeProcesso;
+                            processi[j].PercentualeCPU = processi[sort].PercentualeCPU;
 
-
+                            processi[sort].CostoProcesso = processi1[0].CostoProcesso;
+                            processi[sort].NomeProcesso = processi1[0].NomeProcesso;
+                            processi[sort].PercentualeCPU = processi1[0].PercentualeCPU;
+                        }
+                    }
+                }
+                Console.WriteLine("---------------------------------------------------------");
+                int y = 0;
+                bool pass = false;
+                bool passX = false;
+                if (processi[i].Eseguito == false)
+                {
+                    processi[i].CostoProcesso -= 5;
+                    Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                    if (processi[i].CostoProcesso <= 0)
+                    {
+                        processi[i].Eseguito = true;
+                    }
+                    if (processi[i].CostoProcesso < 0)
+                    {
+                        pass = true;
+                        y = processi[i].CostoProcesso;
+                        processi[i].CostoProcesso = 0;
+                    }
+                    Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                    Console.WriteLine($"Costo CPU: {processi[i].PercentualeCPU}%");
+                    Console.WriteLine();
+                }
+                else if (processi[i].Eseguito == true)
+                {
+                    int conta = 0;
+                    while (passX == false)
+                    {
+                        if (processi[i].Eseguito == false)
+                        {
+                            processi[i].CostoProcesso -= 5;
+                            Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                            passX = true;
+                            if (processi[i].CostoProcesso <= 0)
+                            {
+                                processi[i].Eseguito = true;
+                            }
+                            if (processi[i].CostoProcesso < 0)
+                            {
+                                pass = true;
+                                y = processi[i].CostoProcesso;
+                                processi[i].CostoProcesso = 0;
+                            }
+                            Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                            Console.WriteLine($"Costo CPU: {processi[i].PercentualeCPU}%");
+                            Console.WriteLine();
+                        }
+                        i++;
+                        if (i >= processi.Length)
+                        {
+                            i = 0;
+                        }
+                        if (conta >= processi.Length + 1)
+                        {
+                            passX = true;
+                        }
+                        conta++;
+                    }
+                }
+                bool trovato = false;
+                if (pass == true)
+                {
+                    int conta = 0;
+                    while (trovato == false)
+                    {
+                        if (processi[i].Eseguito == false)
+                        {
+                            Console.WriteLine($"Eseguo {processi[i].NomeProcesso}");
+                            processi[i].CostoProcesso += y;
+                            if (processi[i].CostoProcesso < 0)
+                            {
+                                processi[i].CostoProcesso = 0;
+                            }
+                            Console.WriteLine($"Timeslice del processo dopo esecuzione: {processi[i].CostoProcesso}");
+                            Console.WriteLine($"Costo CPU: {processi[i].PercentualeCPU}%");
+                            Console.WriteLine();
+                            trovato = true;
+                            conta++;
+                        }
+                        i++;
+                        if (i >= processi.Length)
+                        {
+                            i = 0;
+                        }
+                        if (conta >= processi.Length + 1)
+                        {
+                            trovato = true;
+                        }
+                        conta++;
+                    }
+                }
+                if (i >= processi.Length - 1)
+                {
+                    i = 0;
+                }
+                x -= 5;
+                for (int r = 0; r < processi.Length; r++)
+                {
+                    processi[r].PercentualeCPU = Casuale.Next(1, 101);
+                }
+            }
+            Console.WriteLine("Fine delle esecuzioni");
+            for (int i = 0; i < processi.Length; i++)
+            {
+                Console.WriteLine($"{processi[i].NomeProcesso}");
+                Console.WriteLine($"Timeslice di esecuzione: {processi[i].CostoProcesso}");
+                Console.WriteLine($"Percentuale di CPU utilizzato: %{processi[i].PercentualeCPU}");
+                Console.WriteLine();
+            }
         }
-
-
-
-
-
-
-        //static void chiediProcesso()
-        //{
-        //    bool finito0 = false;
-        //    while (finito0 == false)
-        //    {
-        //        Console.WriteLine("Inserire il nome di un processo");
-
-        //        Console.WriteLine("Inserire il costo del processo (in millisecondi)");
-
-        //        Console.WriteLine();
-
-        //        bool trueFinito0 = false;
-        //        while (trueFinito0 == false)
-        //        {
-
-        //            Console.WriteLine("Vuole inserire un'altro processo? [Y/N]");
-        //            char finito1 = Console.ReadLine().ToLower()[0];
-        //            if (finito1 == 'y')
-        //            {
-        //                trueFinito0 = true;
-        //                finito0 = true;
-        //            }
-        //            else if (finito1 == 'n')
-        //            {
-        //                trueFinito0 = true;
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("Inserire una risposta valida.");
-        //            }
-        //        }
-
-        //    }
-        //}
+        static void chiediProcesso(Processi[] processi, int numProcessi)
+        {
+            for (int i = 0; i < numProcessi; i++)
+            {
+                Console.WriteLine("Inserire il nome del processo");
+                processi[i].NomeProcesso = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine("Inserire la lunghezza in millisecondi del processo");
+                while(!int.TryParse(Console.ReadLine(), out processi[i].CostoProcesso))
+                {
+                    Console.WriteLine("Inserire una durata valida per il processo");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
