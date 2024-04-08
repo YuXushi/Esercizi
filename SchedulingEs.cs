@@ -29,7 +29,6 @@ namespace SchedulingEs
             Random Casuale = new Random();
             for (int i = 0; i < processi.Length; i++)
             {
-                processi[i].CostoProcesso = Casuale.Next(1, 51);
                 processi[i].Eseguito = false;
                 processi[i].PercentualeCPU = Casuale.Next(1, 101);
             }
@@ -212,8 +211,6 @@ namespace SchedulingEs
                 }
                 else if (processi[i].Eseguito == true)
                 {
-                    Console.WriteLine("Rilevato processo per Y:");
-                    Console.WriteLine(processi[i].NomeProcesso);
                     int conta = 0;
                     while (passX == false)
                     {
@@ -238,9 +235,9 @@ namespace SchedulingEs
                         i++;
                         if (i >= processi.Length)
                         {
-                            i = 0; 
+                            i = 0;
                         }
-                        if (conta >= processi.Length+1)
+                        if (conta >= processi.Length + 1)
                         {
                             passX = true;
                         }
@@ -271,7 +268,7 @@ namespace SchedulingEs
                         {
                             i = 0;
                         }
-                        if (conta >= processi.Length+1)
+                        if (conta >= processi.Length + 1)
                         {
                             trovato = true;
                         }
@@ -450,7 +447,7 @@ namespace SchedulingEs
                 processi[i].NomeProcesso = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine("Inserire la lunghezza in millisecondi del processo");
-                while(!int.TryParse(Console.ReadLine(), out processi[i].CostoProcesso))
+                while (!int.TryParse(Console.ReadLine(), out processi[i].CostoProcesso))
                 {
                     Console.WriteLine("Inserire una durata valida per il processo");
                 }
