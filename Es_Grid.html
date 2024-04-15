@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid_Es</title>
+    <style>
+        /*
+        La bibbia delle grid:
+        https://gridbyexample.com/
+        */
+        /* 1
+        #container {
+            display: grid;
+            grid-template-columns: 1fr 65% 2fr;
+            grid-template-rows: 50px 50px;
+            gap: 3px;
+        }
+        .item {
+            border: 2px solid blue;
+            background-color: aqua;
+        }
+        */
+        body {
+            display: grid;
+            grid-template-columns: 100px 100px;
+            grid-template-rows: 100px 100px;
+        }
+        div {
+            border: 1px solid blue;
+            margin: 2px;
+        }
+        #a {
+            grid-column-start: 1;
+            grid-row-start: 1;
+        }
+        #b {
+            grid-column-start: 2;
+            grid-row-start: 1;
+        }
+        #c {
+            grid-column-start: 1;
+            grid-row-start: 2;
+        }
+        #d {
+            grid-column-start: 2;
+            grid-row-start: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1
+    <section id="container">
+        <article class="item"></article>
+        <article class="item"></article>
+        <article class="item"></article>
+        <article class="item"></article>
+        <article class="item"></article>
+        <article class="item"></article>
+    </section>
+    -->
+
+    <div id="a">Alpha</div>
+    <div id="b">Bravo</div>
+    <div id="c">Charie</div>
+    <div id="d">Delta</div>
+
+</body>
+</html>
