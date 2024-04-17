@@ -1,6 +1,6 @@
 /*
 1. caricare animali
-2. 
+2. Visualizza i animali presenti in una zona
 3. contare i felini
 4. trovare zone fuori zona
 */
