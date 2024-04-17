@@ -5,7 +5,9 @@ public class docAnimali
   public int ZonaAnimale;
   public docAnimali(string nomeAnimale, string famigliaAnimale, int zonaAnimale)
   {
-    
+    NomeAnimale = nomeAnimale;
+    FamigliaAnimale = famigliaAnimale;
+    ZonaAnimale = zonaAnimale;
   }
   
 }
