@@ -17,4 +17,9 @@ namespace Esercizio_AnimaliZoo
 
     
   }
+  static void caricaAnimali()
+  {
+  }
+  static v
+  
 }
