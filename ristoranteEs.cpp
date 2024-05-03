@@ -4,12 +4,14 @@ using namespace std;
 
 struct Menu
 {
-    string* nomePiatto;
-    float* prezzo;
+    string nomePiatto;
+    float prezzo;
+    string* ptrNome = &nomePiatto;
+    float* ptrPrezzo = &prezzo;
 };
 
 void aggiungiPiatto (Menu cibo){
-
+    cout << cibo.ptrNome << endl;
 }
 void stampaMenu (Menu cibo){
 
