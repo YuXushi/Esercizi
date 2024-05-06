@@ -8,9 +8,23 @@ struct Menu{
     struct Menu *prossimo;
     struct Menu *precedente;
 };
+int conta = 0;
 
 void aggiungiPiatto (Menu cibo){
-
+    int scelta;
+    while (scelta != 1)
+    {
+        struct Menu *testa;
+        struct Menu *conta = NULL;
+        struct Menu *conta+1 = NULL;
+        conta = malloc(sizeof(struct Menu))
+        conta+1 = malloc(sizeof(struct Menu))
+        cout << "Inserire il nome del piatto" << endl;
+        cin >> conta->nomePiatto;
+        cout << "Inserire il prezzo del piatto" << endl;
+        cin >> conta+1->prezzo;
+        conta += 2;
+    }
 }
 void stampaMenu (Menu cibo){
 
@@ -42,6 +56,9 @@ int main()
 }
 
 /*
+source link: https://www.programiz.com/dsa/doubly-linked-list
+
+
 struct node {
     int data;
     struct node *next;
@@ -50,23 +67,27 @@ struct node {
 
 -----------------------
 
-/* Initialize nodes */
+Initialize nodes
+
 struct node *head;
 struct node *one = NULL;
 struct node *two = NULL;
 struct node *three = NULL;
 
-/* Allocate memory */
+Allocate memory
+
 one = malloc(sizeof(struct node));
 two = malloc(sizeof(struct node));
 three = malloc(sizeof(struct node));
 
-/* Assign data values */
+Assign data values
+
 one->data = 1;
 two->data = 2;
 three->data = 3;
 
-/* Connect nodes */
+Connect nodes
+
 one->next = two;
 one->prev = NULL;
 
@@ -76,6 +97,7 @@ two->prev = one;
 three->next = NULL;
 three->prev = two;
 
-/* Save address of first node in head */
+Save address of first node in head
+
 head = one;
 */
