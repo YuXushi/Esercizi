@@ -18,7 +18,7 @@ struct Menu {
 // Funzione che
 // Inserisce un nuovo elemento di tipo
 // Menu alla lista (In fondo)
-void inserisciPiatto(struct Menu** testa) {
+void inserisciPiatto(struct Menu **testa) {
     // Stringa per contenere il nome del nuovo piatto
     string nuovoNomePiatto;
     // Float per contenere il prezzo del nuovo piatto
@@ -63,7 +63,7 @@ void inserisciPiatto(struct Menu** testa) {
     // (visto che è una copia della testa, contiene i stessi elementi)
     // Quindi la testa contiene tutti i elementi della lista
     // Collegati ad essi
-    while (temporaneo->next != NULL)
+    while (temporaneo->prossimo != NULL)
         temporaneo = temporaneo->prossimo;
 
     // Ora che il prossimo della lista temporanea
@@ -134,7 +134,7 @@ int main()
     cout << "Esercizio Ristorante Menu" << endl;
     // Titolo e intestazione del progetto
 
-    struct *testa = NULL;
+    struct Menu *testa = NULL;
     // Dichiarazione del puntatore testa della lista
 
     bool EndProgram = false;
