@@ -8,35 +8,36 @@ struct Menu{
     struct Menu *prossimo;
     struct Menu *precedente;
 };
-int conta = 0;
 
-void aggiungiPiatto (Menu cibo){
-    int scelta;
-    while (scelta != 1)
-    {
-        struct Menu *testa;
-        struct Menu *conta = NULL;
-        struct Menu *conta+1 = NULL;
-        conta = malloc(sizeof(struct Menu))
-        conta+1 = malloc(sizeof(struct Menu))
-        cout << "Inserire il nome del piatto" << endl;
-        cin >> conta->nomePiatto;
-        cout << "Inserire il prezzo del piatto" << endl;
-        cin >> conta+1->prezzo;
-        conta += 2;
-    }
+void aggiungiPiatto (float NuovoPrezzo, string NomeNuovoPiatto, struct Menu **Testa){
+        cout << "Inserire il nome del nuovo piatto:" << endl;
+        cin >> NomeNuovoPiatto;
+        cout << "Inserire il prezzo del nuovo piatto:" << endl;
+        cin >> NuovoPrezzo;
+        cout << NomeNuovoPiatto << endl;
+        cout << NuovoPrezzo << endl;
+        struct Menu* NuovoPiatto = new Menu;
+        NuovoPiatto.nomePiatto = NomeNuovoPiatto;
+        NuovoPiatto.prezzo = NuovoPrezzo;
+        NuovoPiatto.prossimo = (*Testa);
+        NuovoPiatto.precedente = NULL;
+        if ((*Testa) != NULL)
+            (*Testa)->precedente = NuovoPiatto;
+        (*Testa) = NuovoPiatto;
 }
-void stampaMenu (Menu cibo){
+void stampaMenu (){
 
 }
-void cercaPiattiPoveri (Menu cibo){
+void cercaPiattiPoveri (){
 
 }
 
 int main()
 {
-    Menu cibo;
-    int scelta = 0;
+    Menu testa;
+    float nuovoPrezzo;
+    string nomeNuovoPiatto;
+    int scelta;
     while (scelta != 1 && scelta != 2 && scelta != 3)
     {
         cout << "Esercizio Ristorante Menu" << endl;
@@ -47,11 +48,11 @@ int main()
         cin >> scelta;
     }
     if (scelta == 1)
-        aggiungiPiatto(cibo);
+        aggiungiPiatto(nuovoPrezzo, nomeNuovoPiatto, testa);
     else if (scelta == 2)
-        stampaMenu(cibo);
+        stampaMenu();
     else if (scelta == 3)
-        cercaPiattiPoveri(cibo);
+        cercaPiattiPoveri();
     return 0;
 }
 
