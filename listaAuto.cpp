@@ -114,7 +114,7 @@ int main()
 
 /*
 1) inserire in testa una nuova auto
-2) eliminare in testa un'auto
+2) eliminare un'auto con targa inserita dall'utente
 3) Ricercare un'auto tramite targa
 4) contate quante auto hanno un determinata cilindrata (da dare in input)
 */
