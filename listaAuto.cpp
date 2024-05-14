@@ -72,6 +72,7 @@ void contaAuto(struct vettura *Testa) {
         if (Testa->cilindrata == cilindrata){
             contaAuto++;
         }
+        Testa = Testa->next;
     }
     cout << "Numero di veicoli presenti nel garage con " << cilindrata
     << "sono " << contaAuto << endl;
