@@ -39,7 +39,15 @@ void stampaGarage(struct vettura *Testa){
 }
 
 void eliminaAuto(struct vettura *Testa) {
-
+    string targaAuto;
+    cout << "Inserire targa della auto da eliminare: ";
+    cin >> targaAuto;
+    while (Testa != NULL){
+        if (Testa->targa == targaAuto){
+            //????
+        }
+        Testa = Testa->next;
+    }
 }
 
 void ricercaAuto(struct vettura *Testa) {
